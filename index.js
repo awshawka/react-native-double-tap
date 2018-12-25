@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 
-export default class DoubleClick extends Component {
+export default class DoubleTap extends Component {
   constructor(props) {
     super(props);
 
     // time interval between double clicks
-    this.delayTime = props.delay ? props.delay : 200;
+    this.delayTime = props.delay ? props.delay : 150;
     // bool to check whether user tapped once
     this.firstPress = true;
     // the last time user tapped
@@ -15,21 +15,22 @@ export default class DoubleClick extends Component {
     this.timer = false;
   }
 
-  _onPress = () => {
+  _onTap = () => {
     // get the instance of time when pressed
     let now = new Date().getTime();
 
     if (this.firstPress) {
-      // if pressed first can be a first press again
+      // set the flag indicating first press has occured
       this.firstPress = false;
 
-      //set the timeout
+      //start a timer --> if a second tap doesnt come in by the delay, trigger singleTap event handler
       this.timer = setTimeout(() => {
         //check if user passed in prop
         this.props.singleTap ? this.props.singleTap() : null;
 
         // reset back to initial state
         this.firstPress = true;
+        this.timer = false;
       }, this.delayTime);
 
       // mark the last time of the press
@@ -51,7 +52,7 @@ export default class DoubleClick extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this._onPress}>
+      <TouchableOpacity onPress={this._onTap}>
         {this.props.children}
       </TouchableOpacity>
     );

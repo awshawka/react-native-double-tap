@@ -1,7 +1,7 @@
 {
   "name": "react-native-double-tap",
   "version": "1.0.1",
-  "description": "A react-native wrapper component which supports both double tap and single tap",
+  "description": "A react-native wrapper component which supports both double tap and single tap event detection",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {},
