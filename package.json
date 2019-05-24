@@ -4,13 +4,9 @@
   "description": "A react-native wrapper component which supports both double tap and single tap event detection",
   "main": "index.js",
   "dependencies": {},
-  "devDependencies": {
-    "jest": "^24.8.0",
-    "react": "^16.8.6",
-    "react-test-renderer": "^16.8.6"
-  },
+  "devDependencies": {},
   "scripts": {
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
