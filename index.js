@@ -1,65 +1,83 @@
-import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
+import React from "react";
+import { View, TouchableOpacity, TouchableHighlight, TouchableNativeFeedback } from "react-native";
 
-export default class DoubleTap extends Component {
-  constructor(props) {
-    super(props);
 
-    // time interval between double clicks
-    this.delayTime = props.delay ? props.delay : 150;
-    // bool to check whether user tapped once
-    this.firstPress = true;
-    // the last time user tapped
-    this.lastTime = new Date();
-    // a timer is used to run the single tap event
-    this.timer = false;
+
+const DoubleTap = (props) => {
+
+  let delayTime = props.delay ? props.delay : 150;
+  let firstPress = true;
+  let lastTime = new Date();
+  let timer = false;
+
+  onSingleTap = (props) => {
+    //check if user passed in prop
+    if (props.singleTap) {
+      props.singleTap()
+    }
+
+    // reset back to initial state
+    firstPress = true;
+    timer = false;
   }
 
-  _onTap = () => {
+  _onTap = (props) => {
     // get the instance of time when pressed
     let now = new Date().getTime();
 
-    if (this.firstPress) {
+    if (firstPress) {
       // set the flag indicating first press has occured
-      this.firstPress = false;
+      firstPress = false;
 
       //start a timer --> if a second tap doesnt come in by the delay, trigger singleTap event handler
-      this.timer = setTimeout(() => {
-        //check if user passed in prop
-        this.props.singleTap ? this.props.singleTap() : null;
-
-        // reset back to initial state
-        this.firstPress = true;
-        this.timer = false;
-      }, this.delayTime);
+      timer = setTimeout(() => onSingleTap(props), delayTime);
 
       // mark the last time of the press
-      this.lastTime = now;
+      lastTime = now;
     } else {
       //if user pressed immediately again within span of delayTime
-      if (now - this.lastTime < this.delayTime) {
+      if (now - lastTime < delayTime) {
         // clear the timeout for the single press
-        this.timer && clearTimeout(this.timer);
+        timer && clearTimeout(timer);
 
         //check if user passed in prop for double click
-        this.props.doubleTap ? this.props.doubleTap() : null;
+        props.doubleTap ? props.doubleTap() : null;
 
         // reset back to initial state
-        this.firstPress = true;
+        firstPress = true;
       }
     }
   };
+  return (
+    <>
+      {props.type == "TO" || !props.type ? (
+        <TouchableOpacity
+          onPress={() => _onTap(props)}
+          {...props}>
+          {props.renderChild()}
+        </TouchableOpacity>
+      ) : null}
+      {props.type == "TH" ? (
+        <TouchableHighlight
+          onPress={() => _onTap(props)}
+          {...props}>
+          {props.renderChild()}
+        </TouchableHighlight>
+      ) : null}
+      {props.type == "TN" ? (
+        <TouchableNativeFeedback
+          onPress={() => _onTap(props)}
+          {...props}
+        >
+          <View>
+            {props.renderChild()}
+          </View>
+        </TouchableNativeFeedback>
+      ) : null}
 
-  render() {
-    return (
-      <TouchableOpacity onPress={this._onTap}>
-        {this.props.children}
-      </TouchableOpacity>
-    );
-  }
-
-  componentWillUnmount() {
-    // make sure to clear the timer when unmounting
-    this.timer && clearTimeout(this.timer);
-  }
+    </>
+  )
 }
+
+
+export default DoubleTap;
