@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/awshawka/react-native-double-click.git"
+    "url": "git+https://github.com/benjaminaudet/react-native-double-tap.git"
   },
   "keywords": [
     "react",
@@ -26,7 +26,7 @@
   "author": "Waseef Shawkat<awshawka12@gmail.com> (http://awshawka.github.io)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/awshawka/react-native-double-click/issues"
+    "url": "https://github.com/benjaminaudet/react-native-double-tap/issues"
   },
-  "homepage": "https://github.com/awshawka/react-native-double-click#readme"
+  "homepage": "https://github.com/benjaminaudet/react-native-double-tap#readme"
 }
