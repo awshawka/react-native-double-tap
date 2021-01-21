@@ -37,6 +37,7 @@ export default class App extends React.Component {
 | delay     | number   | 200     | Time for delay between taps   |
 | singleTap | function | null    | callback for single tap event |
 | doubleTap | function | null    | callback for double tap event |
+| Feedback  | boolean  | true    | Feedback on Tap (Opacity)     |             |
 
 ## License
 
