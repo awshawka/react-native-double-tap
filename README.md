@@ -21,6 +21,7 @@ export default class App extends React.Component {
             console.log("double tap");
           }}
           delay={200}
+          feedback={true}
         >
           <Button title="Single or Double Tap" />
         </DoubleClick>
