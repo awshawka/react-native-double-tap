@@ -53,19 +53,11 @@ export default class DoubleTap extends Component {
   };
 
   render() {
-    if(this.feedback){
-      return (
-        <TouchableOpacity onPress={this._onTap}>
-          {this.props.children}
-        </TouchableOpacity>
-      )
-    } else {
       return (
         <TouchableWithoutFeedback onPress={this._onTap}>
           {this.props.children}
         </TouchableWithoutFeedback>
       )
-    }
   }
 
   componentWillUnmount() {
