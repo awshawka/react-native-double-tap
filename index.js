@@ -4,7 +4,7 @@ import { TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 export default class DoubleTap extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props.feedback)
     // time interval between double clicks
     this.delayTime = props.delay ? props.delay : 150;
     // bool to check whether user tapped once
