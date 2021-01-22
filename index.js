@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 
 export default class DoubleTap extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props.feedback)
     // time interval between double clicks
     this.delayTime = props.delay ? props.delay : 150;
     // bool to check whether user tapped once
@@ -13,6 +13,8 @@ export default class DoubleTap extends Component {
     this.lastTime = new Date();
     // a timer is used to run the single tap event
     this.timer = false;
+    //Display visual feedback on touch
+    this.feedback = props.feedback ? props.feedback : true
   }
 
   _onTap = () => {
@@ -51,11 +53,11 @@ export default class DoubleTap extends Component {
   };
 
   render() {
-    return (
-      <TouchableOpacity onPress={this._onTap}>
-        {this.props.children}
-      </TouchableOpacity>
-    );
+      return (
+        <TouchableWithoutFeedback onPress={this._onTap}>
+          {this.props.children}
+        </TouchableWithoutFeedback>
+      )
   }
 
   componentWillUnmount() {
