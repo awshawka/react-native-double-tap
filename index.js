@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableWithoutFeedback } from "react-native";
 
 export default class DoubleTap extends Component {
   constructor(props) {
@@ -52,9 +52,9 @@ export default class DoubleTap extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this._onTap}>
+      <TouchableWithoutFeedback onPress={this._onTap}>
         {this.props.children}
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     );
   }
 
