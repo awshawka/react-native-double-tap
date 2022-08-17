@@ -9,11 +9,13 @@ A wrapper component for React Native which supports both double and single tap. 
 ## Usage
 
 ```js
+import DoubleTap from 'react-native-double-tap';
+
 export default class App extends React.Component {
   render() {
     return (
       <View>
-        <DoubleClick
+        <DoubleTap
           singleTap={() => {
             console.log("single tap");
           }}
@@ -23,7 +25,7 @@ export default class App extends React.Component {
           delay={200}
         >
           <Button title="Single or Double Tap" />
-        </DoubleClick>
+        </DoubleTap>
       </View>
     );
   }
